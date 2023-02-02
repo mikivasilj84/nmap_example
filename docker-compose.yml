@@ -1,0 +1,39 @@
+services:
+  flask:
+    build: ./01_flask
+    ports:
+      - "5100:5000"
+    volumes:
+      - ./01_flask:/code
+    networks:
+      - my_network
+
+      
+  udp:
+    build: ./02_udp
+    ports:
+      - "5101:20001"
+    volumes:
+      - ./02_udp:/code
+    networks:
+      - my_network
+
+
+  kali:
+    build: ./00_kali
+    tty: true
+    ports:
+      - "5102:20001"
+    volumes:
+      - ./00_kali:/code
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge
+    # ipam:
+    #   driver: default
+    #   config:
+    #     - subnet: "192.168.2.0/24"
+    #       gateway: "192.168.2.1"
