@@ -1,0 +1,65 @@
+services:
+  flask-1:
+    build: ./01_flask
+    ports:
+      - "5100:5000"
+    volumes:
+      - ./01_flask:/code
+    networks:
+      - my_network
+
+
+  flask-2:
+    build: ./03_flask
+    ports:
+      - "5104:4455"
+    volumes:
+      - ./03_flask:/code
+    networks:
+      - my_network
+
+  flask-3:
+    build: ./04_flask
+    ports:
+      - "5107:7755"
+    volumes:
+      - ./04_flask:/code
+    networks:
+      - my_network
+
+  udp:
+    build: ./02_udp
+    ports:
+      - "5111:20001"
+    volumes:
+      - ./02_udp:/code
+    networks:
+      - my_network
+
+  ssh:
+    build: ./05_ssh
+    platform: linux/amd64
+    tty: true
+    ports:
+      - "5122:22"
+    networks:
+      - my_network
+
+  kali:
+    build: ./00_kali
+    tty: true
+    ports:
+      - "5132:20001"
+    volumes:
+      - ./00_kali:/code
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge
+    # ipam:
+    #   driver: default
+    #   config:
+    #     - subnet: "192.168.2.0/24"
+    #       gateway: "192.168.2.1"
