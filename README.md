@@ -12,6 +12,9 @@ ili
 docker compose up
 ```
 
+
+Koristiti opciju ```-d``` za startovanje u pozadini.
+
 Prvi put komanda zahtijeva vremena, posto priprema Kali Linux distribuciju. Poslije prvog uspijesnog starta, sledeci pozivi su brzi posto je neophodni Docker image vec na lokalnoj masini.
 
 
@@ -30,6 +33,13 @@ Pristupiti kontejneru (primjer komande):
 ```
 docker container exec -it netsniff-kali-1 /bin/bash
 ```
+
+Za lakse rukovanje, sledece skripte olaksavaju interakciju sa servisima.
+
+```./start.sh``` startovanje servisa (```./start.sh -d``` za startovanje u pozadini)
+```./stop.sh``` zaustavljanje servisa
+```./attach_to_kali.sh``` konektovanje na Kali linux konzolu gdje je nmap instaliran.
+
 
 
 Skeniranje subneta (primjer komande):
